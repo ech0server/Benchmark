@@ -19,7 +19,8 @@
 package org.owasp.benchmark.testcode;
 
 import java.io.IOException;
-
+import java.security.MessageDigest;
+import org.apache.commons.codec.digest.DigestUtils;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,9 +32,22 @@ public class BenchmarkTest00001 extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public static byte[] md5(String password) {
+   	// ruleid: use-of-md5
+    		MessageDigest md5Digest = MessageDigest.getInstance("MD5");
+    		md5Digest.update(password.getBytes());
+    		byte[] hashValue = md5Digest.digest();
+    		return hashValue;
+  	}
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		pass = BenchmarkTest00001.md5("password"");
+					      
+		MessageDigest md5Digest = MessageDigest.getInstance("MD5");
+    		md5Digest.update(password.getBytes());
+    		byte[] hashValue = md5Digest.digest();
 		javax.servlet.http.Cookie userCookie = new javax.servlet.http.Cookie("BenchmarkTest00001", "FileName");
 		userCookie.setMaxAge(60*3); //Store cookie for 3 minutes
 		userCookie.setSecure(true);
