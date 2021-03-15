@@ -20,6 +20,7 @@ package org.owasp.benchmark.testcode;
 
 import java.io.IOException;
 
+import java.lang.Runtime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,23 @@ public class BenchmarkTest00002 extends HttpServlet {
 		javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00002.html");
 		rd.include(request, response);
 	}
+	
+
+    	public byte[] test1(String plainText) {
+        	// ruleid: no-null-cipher
+        	Cipher doNothingCihper = new NullCipher();
+        	//The ciphertext produced will be identical to the plaintext.
+        	byte[] cipherText = doNothingCihper.doFinal(plainText);
+        	return cipherText;
+    	}
+
+    	public void test2(String plainText) {
+        	// ok: no-null-cipher
+        	Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        	byte[] cipherText = cipher.doFinal(plainText);
+        	return cipherText;
+    	}
+	
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
