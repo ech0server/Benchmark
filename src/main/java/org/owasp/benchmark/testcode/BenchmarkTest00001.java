@@ -56,7 +56,7 @@ public class BenchmarkTest00001 extends HttpServlet {
 		response.addCookie(userCookie);
 		javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00001.html");
 		rd.include(request, response);
-					   //Commnet
+		
 	}
 
 	@Override
