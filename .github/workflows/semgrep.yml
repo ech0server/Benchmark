@@ -1,7 +1,8 @@
 on:
-  push:
-    branches:
-    - master
+   pull_request: {}
+  #push:
+   # branches:
+    #- master
 name: Semgrep
 jobs:
   semgrep:
